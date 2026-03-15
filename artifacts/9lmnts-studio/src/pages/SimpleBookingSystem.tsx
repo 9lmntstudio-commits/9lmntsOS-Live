@@ -186,10 +186,10 @@ export default function SimpleBookingSystem({ initialService, onNavigate }: Simp
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
         {/* Progress Steps */}
         {!submitted && (
-          <div className="flex items-center justify-center gap-2 mb-10">
+          <div className="flex items-center justify-center gap-2 mb-6 sm:mb-10">
             {[
               { num: 1, label: "WANT", desc: "Pick a service" },
               { num: 2, label: "PICK", desc: "Your details" },
@@ -234,7 +234,7 @@ export default function SimpleBookingSystem({ initialService, onNavigate }: Simp
               exit={{ opacity: 0, x: -20 }}
             >
               <div className="text-center mb-8">
-                <h1 className="text-4xl font-black mb-2">What do you want?</h1>
+                <h1 className="text-3xl sm:text-4xl font-black mb-2">What do you want?</h1>
                 <p className="opacity-60">Choose a service to get started</p>
               </div>
 
@@ -318,7 +318,7 @@ export default function SimpleBookingSystem({ initialService, onNavigate }: Simp
               className="max-w-xl mx-auto"
             >
               <div className="text-center mb-8">
-                <h1 className="text-4xl font-black mb-2">Let's get to know you</h1>
+                <h1 className="text-3xl sm:text-4xl font-black mb-2">Let's get to know you</h1>
                 <p className="opacity-60">Tell us a bit so we can prepare for you</p>
               </div>
 
@@ -442,8 +442,8 @@ export default function SimpleBookingSystem({ initialService, onNavigate }: Simp
                 <CheckCircle className="w-10 h-10" style={{ color: "#FF7A00" }} />
               </motion.div>
 
-              <h1 className="text-4xl font-black mb-3">You're In.</h1>
-              <p className="text-xl opacity-70 mb-8">
+              <h1 className="text-3xl sm:text-4xl font-black mb-3">You're In.</h1>
+              <p className="text-base sm:text-xl opacity-70 mb-8">
                 Your request has been received. Here's what happens next:
               </p>
 

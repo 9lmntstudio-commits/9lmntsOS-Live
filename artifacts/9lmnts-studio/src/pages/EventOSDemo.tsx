@@ -150,7 +150,7 @@ function StorePanel({ data, primary, gradient, cardBg, onClose, onBook }: StoreP
         initial={{ scale: 0.92, y: 24 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.92, y: 24 }}
-        className="relative w-full max-w-4xl rounded-3xl p-8 border my-8"
+        className="relative w-full max-w-4xl rounded-3xl p-4 sm:p-8 border my-4 sm:my-8"
         style={{ backgroundColor: cardBg === "bg-[#111]" ? "#111" : cardBg === "bg-[#1a2236]" ? "#1a2236" : cardBg === "bg-[#2a2a2a]" ? "#2a2a2a" : "#111", borderColor: primary + "33" }}
       >
         <button onClick={onClose} className="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
@@ -332,23 +332,24 @@ export default function EventOSDemo({ onNavigate }: EventOSDemoProps) {
 
       {/* ── Nav ────────────────────────────────────────────────────────────── */}
       <nav className="sticky top-0 z-40 border-b border-white/5 backdrop-blur-xl bg-black/80">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-black text-sm" style={{ backgroundColor: primary }}>
+        {/* Main row */}
+        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-black text-sm flex-shrink-0" style={{ backgroundColor: primary }}>
               9L
             </div>
-            <span className="font-bold hidden sm:block">
+            <span className="font-bold text-sm">
               9LMNTS <span style={{ color: primary }}>Studio</span>
             </span>
           </div>
 
-          {/* Theme switcher */}
-          <div className="flex bg-white/10 rounded-xl p-1">
+          {/* Theme switcher — desktop only in main row */}
+          <div className="hidden sm:flex bg-white/10 rounded-xl p-1">
             {(Object.keys(THEMES) as string[]).map((key) => (
               <button
                 key={key}
                 onClick={() => setActiveThemeId(key)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   activeThemeId === key ? "bg-white text-black shadow" : "text-white/40 hover:text-white"
                 }`}
               >
@@ -357,8 +358,8 @@ export default function EventOSDemo({ onNavigate }: EventOSDemoProps) {
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold animate-pulse">
+          <div className="flex items-center gap-1.5">
+            <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold animate-pulse">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
               {labels.liveBadge}
             </div>
@@ -379,6 +380,23 @@ export default function EventOSDemo({ onNavigate }: EventOSDemoProps) {
           </div>
         </div>
 
+        {/* Theme switcher row — mobile only */}
+        <div className="sm:hidden px-3 pb-2">
+          <div className="flex bg-white/10 rounded-xl p-1">
+            {(Object.keys(THEMES) as string[]).map((key) => (
+              <button
+                key={key}
+                onClick={() => setActiveThemeId(key)}
+                className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold transition-all text-center ${
+                  activeThemeId === key ? "bg-white text-black shadow" : "text-white/40 hover:text-white"
+                }`}
+              >
+                {THEMES[key].name}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Ticker */}
         <div className="border-t border-white/5 overflow-hidden py-2" style={{ backgroundColor: `${primary}0D` }}>
           <div className="animate-marquee-scroll whitespace-nowrap flex gap-12 text-xs font-medium" style={{ color: `${primary}CC` }}>
@@ -389,10 +407,10 @@ export default function EventOSDemo({ onNavigate }: EventOSDemoProps) {
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-4 py-10 space-y-14">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-10 space-y-10 sm:space-y-14">
 
         {/* ── Hero ───────────────────────────────────────────────────────────── */}
-        <section className="text-center py-10">
+        <section className="text-center py-4 sm:py-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6"
@@ -401,25 +419,25 @@ export default function EventOSDemo({ onNavigate }: EventOSDemoProps) {
               <Sparkles className="w-4 h-4" />
               Live Demo — {labels.appName} {labels.appSubtitle}
             </div>
-            <h1 className="text-5xl md:text-7xl font-black mb-4 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-4 leading-tight">
               Your Events.{" "}
               <span className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
                 Supercharged.
               </span>
             </h1>
-            <p className="text-xl max-w-2xl mx-auto mb-8 text-white/60">
+            <p className="text-base sm:text-xl max-w-2xl mx-auto mb-8 text-white/60 px-2">
               EventOS turns your venue into a revenue machine. Watch these numbers climb in real time.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-center px-4 sm:px-0">
               <button
                 onClick={() => setShowStore(true)}
-                className={`flex items-center gap-2 px-8 py-4 rounded-xl font-black text-lg text-black bg-gradient-to-r ${gradient} hover:opacity-90 transition-all active:scale-95`}
+                className={`flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-black text-base sm:text-lg text-black bg-gradient-to-r ${gradient} hover:opacity-90 transition-all active:scale-95`}
               >
                 <Play className="w-5 h-5" /> Get EventOS Now
               </button>
               <button
                 onClick={() => onNavigate?.("booking")}
-                className="flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-lg border border-white/20 hover:bg-white/10 transition-all"
+                className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base sm:text-lg border border-white/20 hover:bg-white/10 transition-all"
               >
                 Book a Demo <ArrowRight className="w-5 h-5" />
               </button>
@@ -579,29 +597,31 @@ export default function EventOSDemo({ onNavigate }: EventOSDemoProps) {
         {/* ── Manual vs EventOS Comparison ─────────────────────────────────── */}
         <section>
           <div className="text-center mb-6">
-            <h2 className="text-3xl font-black mb-2">EventOS vs. Doing It Manually</h2>
+            <h2 className="text-2xl sm:text-3xl font-black mb-2">EventOS vs. Doing It Manually</h2>
             <p className="text-white/50">The numbers don't lie</p>
           </div>
-          <div className="rounded-2xl border overflow-hidden" style={{ backgroundColor: "#111", borderColor: `${primary}33` }}>
-            <div className="grid grid-cols-3 text-center py-4 border-b border-white/5">
-              <div className="font-bold text-white/40">Manual</div>
-              <div className="font-bold" style={{ color: primary }}>Metric</div>
-              <div className="font-bold" style={{ color: primary }}>EventOS ⚡</div>
+          <div className="rounded-2xl border overflow-x-auto" style={{ backgroundColor: "#111", borderColor: `${primary}33` }}>
+            <div className="min-w-[300px]">
+              <div className="grid grid-cols-3 text-center py-3 border-b border-white/5">
+                <div className="font-bold text-white/40 text-xs sm:text-sm px-2">Manual</div>
+                <div className="font-bold text-xs sm:text-sm px-2" style={{ color: primary }}>Metric</div>
+                <div className="font-bold text-xs sm:text-sm px-2" style={{ color: primary }}>EventOS ⚡</div>
+              </div>
+              {battleMetrics.map((m, i) => (
+                <motion.div
+                  key={m.label}
+                  className="grid grid-cols-3 text-center py-3 border-b border-white/5 last:border-0 items-center"
+                  animate={{ backgroundColor: i < battleStep ? `${primary}0a` : "transparent" }}
+                >
+                  <div className="text-xs sm:text-sm text-white/40 line-through px-2">{m.manual}</div>
+                  <div className="text-[10px] sm:text-xs font-medium text-white/60 px-2">{m.label}</div>
+                  <div className="text-xs sm:text-sm font-bold flex items-center justify-center gap-1 px-2" style={{ color: primary }}>
+                    {m.eventos}
+                    {i < battleStep && <CheckCircle className="w-3 sm:w-4 h-3 sm:h-4" />}
+                  </div>
+                </motion.div>
+              ))}
             </div>
-            {battleMetrics.map((m, i) => (
-              <motion.div
-                key={m.label}
-                className="grid grid-cols-3 text-center py-4 border-b border-white/5 last:border-0 items-center"
-                animate={{ backgroundColor: i < battleStep ? `${primary}0a` : "transparent" }}
-              >
-                <div className="text-sm text-white/40 line-through">{m.manual}</div>
-                <div className="text-xs font-medium text-white/60">{m.label}</div>
-                <div className="text-sm font-bold flex items-center justify-center gap-1" style={{ color: primary }}>
-                  {m.eventos}
-                  {i < battleStep && <CheckCircle className="w-4 h-4" />}
-                </div>
-              </motion.div>
-            ))}
           </div>
         </section>
 
@@ -674,7 +694,7 @@ export default function EventOSDemo({ onNavigate }: EventOSDemoProps) {
         {/* ── Features Grid ─────────────────────────────────────────────────── */}
         <section>
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-black mb-2">Everything You Need</h2>
+            <h2 className="text-2xl sm:text-3xl font-black mb-2">Everything You Need</h2>
             <p className="text-white/50">One platform to run your entire event operation</p>
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -736,35 +756,35 @@ export default function EventOSDemo({ onNavigate }: EventOSDemoProps) {
 
         {/* ── CTA ──────────────────────────────────────────────────────────── */}
         <section
-          className="rounded-3xl p-12 text-center border"
+          className="rounded-3xl p-6 sm:p-10 md:p-12 text-center border"
           style={{ backgroundColor: "#111", borderColor: `${primary}44` }}
         >
           <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-bold mb-6"
             style={{ backgroundColor: `${primary}20`, color: primary }}
           >
             <Lock className="w-4 h-4" />
             Limited availability — serious venues only
           </div>
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4">
             Ready to 4× Your{" "}
             <span className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
               Event Revenue?
             </span>
           </h2>
-          <p className="text-lg text-white/60 mb-8 max-w-xl mx-auto">
+          <p className="text-base sm:text-lg text-white/60 mb-8 max-w-xl mx-auto px-2">
             Join 200+ venues using EventOS. Get set up in 2 hours, not 2 days.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-center px-4 sm:px-0">
             <button
               onClick={() => setShowStore(true)}
-              className={`flex items-center gap-2 px-10 py-4 rounded-xl font-black text-xl text-black bg-gradient-to-r ${gradient} hover:opacity-90 transition-all active:scale-95`}
+              className={`flex items-center justify-center gap-2 px-8 sm:px-10 py-4 rounded-xl font-black text-base sm:text-xl text-black bg-gradient-to-r ${gradient} hover:opacity-90 transition-all active:scale-95`}
             >
-              Get EventOS <ArrowRight className="w-6 h-6" />
+              Get EventOS <ArrowRight className="w-5 sm:w-6 h-5 sm:h-6" />
             </button>
             <button
               onClick={() => onNavigate?.("booking")}
-              className="flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-lg border border-white/20 hover:bg-white/10 transition-all"
+              className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base sm:text-lg border border-white/20 hover:bg-white/10 transition-all"
             >
               Book Free Consultation
             </button>
