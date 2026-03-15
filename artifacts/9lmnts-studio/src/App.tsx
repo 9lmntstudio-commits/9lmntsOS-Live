@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import EventOSDemo from "@/pages/EventOSDemo";
 import SimpleBookingSystem from "@/pages/SimpleBookingSystem";
@@ -41,8 +40,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <AppContent />
-        <Toaster />
+        <AppContent /
       </TooltipProvider>
     </QueryClientProvider>
   );
