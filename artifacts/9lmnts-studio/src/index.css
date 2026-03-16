@@ -293,3 +293,32 @@
     inset: -1px;
   }
 }
+/* 🚨 URGENT LAYOUT FIX - Forces everything inside the screen */
+* {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+img, video, svg, iframe {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Force all common layout containers to stay inside */
+.container, .wrapper, main, section, div[class*="grid"], div[class*="flex"] {
+  max-width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+} Fix layout overflow
