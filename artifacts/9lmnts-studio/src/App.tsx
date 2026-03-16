@@ -40,7 +40,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <AppContent /
+        <AppContent />
       </TooltipProvider>
     </QueryClientProvider>
   );
